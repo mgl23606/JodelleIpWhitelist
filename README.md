@@ -1,59 +1,73 @@
-Jodelle IP Whitelist
-Restrict server access to only whitelisted IPs with simple management commands.
+# Jodelle IP Whitelist  
+*A secure and easy-to-use IP whitelist plugin for Velocity proxy servers.*  
 
-Overview:
-Jodelle IP Whitelist is a powerful and easy-to-use plugin for Velocity proxy servers that allows server administrators to manage which IP addresses can access their network. With a robust command system, you can reload the whitelist, add or remove IPs, and even display the current list of whitelisted IPs. This plugin ensures only trusted IPs can access your proxy, adding an extra layer of security to your setup.
+![🚀 Velocity](https://img.shields.io/badge/Proxy-Velocity-blue)  
 
-Key Features:
+---
 
-Whitelist Management:
-Easily add, remove, or reload IPs in your whitelist with simple commands.
+## 📌 Overview  
+Jodelle IP Whitelist helps you **restrict server access** to only trusted IP addresses. With simple commands, you can **add, remove, reload, and view** whitelisted IPs, ensuring only authorized users connect to your server.
 
-IP Validation:
-The plugin ensures that only valid IPv4 addresses (e.g., 192.168.1.23) are accepted for addition to the whitelist, preventing erroneous entries.
+### ✨ Features  
+✔ **Whitelist Management** – Easily add, remove, and reload whitelisted IPs.  
+✔ **Valid IPv4 Enforcement** – Ensures only properly formatted IPs (e.g., `192.168.1.23`) are accepted.  
+✔ **Command-Based Control** – Manage the whitelist without editing files manually.  
+✔ **Automatic IP Validation** – Skips invalid IPs and logs warnings when loading.  
+✔ **Simple & Secure** – Prevents unauthorized connections to your proxy server.
 
-Flexible Command System:
+---
 
-/jodellewhitelist reload – Reload the whitelist from the file.
-/jodellewhitelist addip <IP> – Add an IP address to the whitelist.
-/jodellewhitelist removeip <IP> – Remove an IP address from the whitelist.
-/jodellewhitelist reloadips – Reload the IP list.
-/jodellewhitelist showips – View all currently whitelisted IPs.
-IP Filtering:
-During the whitelist loading process, invalid or malformed IP addresses are automatically skipped, and a warning is logged for each invalid entry.
+## 📥 Installation  
+1. Download the latest `.jar` file from the [Releases](https://github.com/your-repo/jodelle-ip-whitelist/releases).  
+2. Place it in the `plugins` folder of your **Velocity** proxy server.  
+3. Restart or reload your server.  
+4. Edit the `whitelist.txt` file in the plugin folder to add allowed IPs.  
 
-User-Friendly:
-Simple usage messages and helpful feedback ensure that server administrators are always informed about the status of the whitelist.
+---
 
-Why Use This Plugin?
+## 🔧 Commands  
 
-Security:
-By restricting server access to only whitelisted IPs, you add an essential layer of protection against unauthorized access.
+| Command | Description |
+|---------|------------|
+| `/jodellewhitelist reload` | Reloads the whitelist from the file. |
+| `/jodellewhitelist addip <IP>` | Adds an IP address to the whitelist. |
+| `/jodellewhitelist removeip <IP>` | Removes an IP address from the whitelist. |
+| `/jodellewhitelist reloadips` | Reloads the IP list from memory. |
+| `/jodellewhitelist showips` | Displays all currently whitelisted IPs. |
 
-Ease of Use:
-The plugin’s intuitive command system makes managing your whitelist a breeze, even for beginners.
+---
 
-Flexibility:
-Whether you need to quickly reload your whitelist, add a new IP, or see which addresses are currently allowed, this plugin offers everything you need.
+## 🔒 Permissions  
 
-Installation:
+| Permission | Description |
+|------------|------------|
+| `jodellewhitelist.reload` | Allows reloading the whitelist. |
+| `jodellewhitelist.addip` | Allows adding IPs to the whitelist. |
+| `jodellewhitelist.removeip` | Allows removing IPs from the whitelist. |
+| `jodellewhitelist.showips` | Allows viewing the whitelist. |
 
-Download the plugin .jar file.
-Place it in the plugins folder of your Velocity proxy server.
-Restart or reload your proxy server to enable the plugin.
-Modify the whitelist.txt file to configure your initial list of allowed IPs.
-Commands:
+---
 
-/jodellewhitelist reload – Reload the whitelist from the file.
-/jodellewhitelist addip <IP> – Add an IP address to the whitelist.
-/jodellewhitelist removeip <IP> – Remove an IP address from the whitelist.
-/jodellewhitelist reloadips – Reload the IP list.
-/jodellewhitelist showips – Display all whitelisted IPs.
-Permissions:
+## 🛠 Configuration  
+By default, the plugin creates a `whitelist.txt` file in the plugin folder. This file should contain one IP per line.  
+Example:  
 
-jodellewhitelist.reload – Allows users to reload the whitelist.
-jodellewhitelist.addip – Allows users to add IPs to the whitelist.
-jodellewhitelist.removeip – Allows users to remove IPs from the whitelist.
-jodellewhitelist.showips – Allows users to view the list of whitelisted IPs.
-Author:
-Jodelle
+When reloading the whitelist, the plugin **skips invalid IPs** and logs warnings for malformed entries.
+
+---
+
+## 📜 License  
+This plugin is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 💬 Support & Contributions  
+- Found a bug? Report it in [Issues](https://github.com/your-repo/jodelle-ip-whitelist/issues).  
+- Want to contribute? Fork the repo and submit a **pull request**!  
+- Need help? Join our **Discord community** (add link if available).  
+
+---
+
+🚀 **Built for security and simplicity. Keep your Velocity proxy safe with Jodelle IP Whitelist!** 🚀
+
+
