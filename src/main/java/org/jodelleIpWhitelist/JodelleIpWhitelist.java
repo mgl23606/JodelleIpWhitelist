@@ -6,7 +6,8 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-import jdk.jpackage.internal.Log;
+
+import org.jodelleIpWhitelist.Listeners.CommandListener;
 import org.jodelleIpWhitelist.Listeners.PlayerLoginListener;
 import org.jodelleIpWhitelist.WhitelistManager.WhiteListManager;
 import org.slf4j.Logger;
@@ -58,6 +59,10 @@ public class JodelleIpWhitelist {
 
         // Register the login event listener
         proxy.getEventManager().register(this, new PlayerLoginListener(this, logger));
+
+        // Register the command listener
+        proxy.getCommandManager().register("jodellewhitelist", new CommandListener(whiteListManager, logger));
+
 
         logger.info("Plugin Loaded");
     }
