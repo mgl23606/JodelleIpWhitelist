@@ -20,7 +20,7 @@ Jodelle IP Whitelist helps you **restrict server access** to only trusted IP add
 ---
 
 ## 📥 Installation  
-1. Download the latest `.jar` file from the [Releases](https://github.com/your-repo/jodelle-ip-whitelist/releases).  
+1. Download the latest `.jar` file from the [Releases](https://github.com/mgl23606/JodelleIpWhitelist/releases).  
 2. Place it in the `plugins` folder of your **Velocity** proxy server.  
 3. Restart or reload your server.  
 4. Edit the `whitelist.txt` file in the plugin folder to add allowed IPs.  
@@ -64,7 +64,7 @@ This plugin is licensed under the **MIT License**. See the [LICENSE](LICENSE) fi
 ---
 
 ## 💬 Support & Contributions  
-- Found a bug? Report it in [Issues](https://github.com/your-repo/jodelle-ip-whitelist/issues).  
+- Found a bug? Report it in [Issues](https://github.com/mgl23606/JodelleIpWhitelist/issues).  
 - Want to contribute? Fork the repo and submit a **pull request**!  
 - Need help? Join our **Discord community** (add link if available).  
 
