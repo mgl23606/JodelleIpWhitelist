@@ -8,6 +8,8 @@
 ## 📌 Overview  
 Jodelle IP Whitelist helps you **restrict server access** to only trusted IP addresses. With simple commands, you can **add, remove, reload, and view** whitelisted IPs, ensuring only authorized users connect to your server.
 
+💖 If you love this project, consider [donating](https://www.paypal.com/donate?hosted_button_id=QG8WUHMEEBXWW) to support further development!  
+
 ### ✨ Features  
 ✔ **Whitelist Management** – Easily add, remove, and reload whitelisted IPs.  
 ✔ **Valid IPv4 Enforcement** – Ensures only properly formatted IPs (e.g., `192.168.1.23`) are accepted.  
