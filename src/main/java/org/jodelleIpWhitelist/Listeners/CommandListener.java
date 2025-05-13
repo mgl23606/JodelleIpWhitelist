@@ -46,11 +46,16 @@ public class CommandListener implements SimpleCommand {
                     source.sendMessage(Component.text("You do not have permission to use this command."));
                     return;
                 }
-                if (args.length < 2) {
-                    source.sendMessage(Component.text("Usage: /jodellewhitelist addip <IP>"));
+                if (args.length < 3) {
+                    source.sendMessage(Component.text("Usage: /jodellewhitelist addip <username> <IP>"));
                     return;
                 }
-                addIP(source, args[1]);
+
+                String username = args[1];
+                String ip = args[2];
+
+                addIP(source, ip, username);
+
                 break;
             case "removeip":
                 if (!hasPermission(source, "jodellewhitelist.removeip")) {
@@ -58,10 +63,10 @@ public class CommandListener implements SimpleCommand {
                     return;
                 }
                 if (args.length < 2) {
-                    source.sendMessage(Component.text("Usage: /jodellewhitelist removeip <IP>"));
+                    source.sendMessage(Component.text("Usage: /jodellewhitelist removeip <Username> <IP>"));
                     return;
                 }
-                removeIP(source, args[1]);
+                removeIP(source, args[1], args[2]);
                 break;
             case "reloadips":
                 if (!hasPermission(source, "jodellewhitelist.reloadips")) {
@@ -92,17 +97,25 @@ public class CommandListener implements SimpleCommand {
         source.sendMessage(Component.text("Whitelist reloaded!"));
     }
 
-    private void addIP(CommandSource source, String ip) {
+    private void addIP(CommandSource source, String ip, String username) {
         if (!isValidIPv4(ip)) {
             source.sendMessage(Component.text("Invalid IP format. Please provide a valid IPv4 address (e.g., 192.168.1.23)."));
             return;
         }
 
-        if (whitelistManager.addIP(ip)) {
+        if(!isValidUsername(username)){
+            return;
+        }
+
+        if (whitelistManager.addIP(username, ip)) {
             source.sendMessage(Component.text("Added IP to whitelist: " + ip));
         } else {
             source.sendMessage(Component.text("IP is already whitelisted: " + ip));
         }
+    }
+
+    private boolean isValidUsername(String username) {
+        return username != null && username.matches("^[a-zA-Z0-9_]{3,16}$");
     }
 
     private boolean isValidIPv4(String ip) {
@@ -110,8 +123,8 @@ public class CommandListener implements SimpleCommand {
         return Pattern.compile(ipv4Pattern).matcher(ip).matches();
     }
 
-    private void removeIP(CommandSource source, String ip) {
-        if (whitelistManager.removeIP(ip)) {
+    private void removeIP(CommandSource source, String username, String ip) {
+        if (whitelistManager.removeIP(username, ip)) {
             source.sendMessage(Component.text("Removed IP from whitelist: " + ip));
         } else {
             source.sendMessage(Component.text("IP was not found in whitelist: " + ip));

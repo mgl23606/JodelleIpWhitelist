@@ -6,7 +6,6 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-
 import org.jodelleIpWhitelist.Listeners.CommandListener;
 import org.jodelleIpWhitelist.Listeners.PlayerLoginListener;
 import org.jodelleIpWhitelist.WhitelistManager.WhiteListManager;
@@ -15,11 +14,12 @@ import org.slf4j.Logger;
 import java.nio.file.*;
 import java.util.List;
 
+
 /**
  * JodelleIpWhitelist is a Velocity plugin that restricts proxy access
  * to only whitelisted IPs.
  */
-@Plugin(id = "jodelleipwhitelist", name = "JodelleIpWhitelist", version = "25")
+@Plugin(id = "jodelleipwhitelist", name = "JodelleIpWhitelist", version = "25.5")
 public class JodelleIpWhitelist {
 
     @Inject
@@ -44,7 +44,7 @@ public class JodelleIpWhitelist {
         // Specify the file that will contain the whitelisted IPs
         this.whiteListFile = dataDirectory.resolve("whitelist.txt");
 
-        this.whiteListManager = new WhiteListManager(whiteListFile, logger);
+        this.whiteListManager = new WhiteListManager(logger);
     }
 
     /**

@@ -38,16 +38,34 @@ public class PlayerLoginListener {
     public void onPlayerLogin(LoginEvent event) {
         // Get the player's IP address
         String playerIP = event.getPlayer().getRemoteAddress().getAddress().getHostAddress();
-        logger.info("Player {} attempted to join with IP: {}", event.getPlayer().getUsername(), playerIP);
+        String playerUsername = event.getPlayer().getUsername();
 
-        // Retrieve the list of allowed IPs from the plugin
-        List<String> allowedIPs = plugin.getWhiteListManager().getAllowedIPs();
+        logger.info("Player {} attempted to join with IP: {}", playerUsername, playerIP);
 
-        // Check if the player's IP is in the whitelist
-        if (!allowedIPs.contains(playerIP)) {
+        if (!plugin.getWhiteListManager().containsUser(playerUsername)){
+            // Deny the connection and send a message to the player
+            event.setResult(ResultedEvent.ComponentResult.denied(Component.text("Your username is not Whitelisted!")));
+            logger.warn("Blocked connection from {} ({})", event.getPlayer().getUsername(), playerIP);
+            return;
+        }
+
+        List<String> ipsForUsername = plugin.getWhiteListManager().getIpsForUsername(playerUsername);
+
+        if (ipsForUsername.isEmpty()){
             // Deny the connection and send a message to the player
             event.setResult(ResultedEvent.ComponentResult.denied(Component.text("Your IP is not Whitelisted!")));
             logger.warn("Blocked connection from {} ({})", event.getPlayer().getUsername(), playerIP);
+            return;
+        }
+
+        // Check if the player's IP is in the whitelist
+        if (!ipsForUsername.contains(playerIP)) {
+            // Deny the connection and send a message to the player
+            event.setResult(ResultedEvent.ComponentResult.denied(Component.text("Your IP is not Whitelisted!")));
+            logger.warn("Blocked connection from {} ({})", event.getPlayer().getUsername(), playerIP);
+            return;
         }
     }
+
+
 }
