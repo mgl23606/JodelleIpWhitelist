@@ -2,6 +2,7 @@ package org.jodelleIpWhitelist.Listeners;
 
 import com.velocitypowered.api.event.ResultedEvent;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.connection.LoginEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -49,6 +50,28 @@ public class PlayerLoginListener {
         // We log the success to the DB.
         plugin.getDatabaseManager().logAttempt(playerUsername, playerIP, "ALLOWED", "Successful login");
         logger.info("Player {} logged in successfully from {}", playerUsername, playerIP);
+    }
+
+    /**
+     * This fires whenever a player leaves the proxy.
+     * Whether they quit, get kicked, or the server crashes, this catches it.
+     */
+    @Subscribe
+    public void onPlayerLogout(DisconnectEvent event) {
+        String playerUsername = event.getPlayer().getUsername();
+        String playerIP = event.getPlayer().getRemoteAddress().getAddress().getHostAddress();
+
+        // Log to console
+        logger.info("Player {} has disconnected from {}", playerUsername, playerIP);
+
+        // Save to our SQLite database
+        // We use "LOGOUT" as the status and "User left" as the reason
+        plugin.getDatabaseManager().logAttempt(
+                playerUsername,
+                playerIP,
+                "LOGOUT",
+                "User disconnected"
+        );
     }
 
     /**
