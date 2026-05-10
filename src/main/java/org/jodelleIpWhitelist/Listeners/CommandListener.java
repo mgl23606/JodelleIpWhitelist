@@ -6,18 +6,15 @@ import com.velocitypowered.api.proxy.Player;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.jodelleIpWhitelist.WhitelistManager.WhiteListManager;
-import org.slf4j.Logger;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class CommandListener implements SimpleCommand {
     private final WhiteListManager whitelistManager;
-    private final Logger logger;
 
-    public CommandListener(WhiteListManager whitelistManager, Logger logger) {
+    public CommandListener(WhiteListManager whitelistManager) {
         this.whitelistManager = whitelistManager;
-        this.logger = logger;
     }
 
     @Override
@@ -29,9 +26,6 @@ public class CommandListener implements SimpleCommand {
             source.sendMessage(Component.text("Usage: /jodellewhitelist <reload|addip|removeip|reloadips|showips> [IP]"));
             return;
         }
-
-        boolean isPlayer = source instanceof Player;
-        Player player = isPlayer ? (Player) source : null;
 
         switch (args[0].toLowerCase()) {
             case "reload":
@@ -89,7 +83,7 @@ public class CommandListener implements SimpleCommand {
     }
 
     private boolean hasPermission(CommandSource source, String permission) {
-        return !(source instanceof Player) || ((Player) source).hasPermission(permission);
+        return !(source instanceof Player) || source.hasPermission(permission);
     }
 
     private void reloadWhitelist(CommandSource source) {
